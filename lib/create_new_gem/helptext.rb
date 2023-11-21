@@ -22,6 +22,7 @@ Options:
 --homepage '<homepage>': Adds homepage
 --license '<license>': Adds license
 --no_git: Doesn't initialize git
+--prefs '<prefs>': Modifies preferences. Use form "email:matthias@matthiasclee.com,name:Matthias Lee"
 --help: Shows the help menu
 A
     end
