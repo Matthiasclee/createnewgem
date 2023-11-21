@@ -58,7 +58,6 @@ classname = (args.data[1] || (STDERR.puts "Gem class name required";exit 1))
 dependencies = {} # Set later
 requires = args.options[:add_requires].to_s.split(?,)
 executables = args.options[:add_executables].to_s.split(?,)
-directories = args.options[:add_directories].to_s.split(?,)
 summary = (args.options[:summary] || (print "Gem summary: ";STDIN.gets.chomp) )
 description = (args.options[:description] || (print "Gem description: ";STDIN.gets.chomp) )
 authors = (begin;args.options[:authors].split(?,);rescue;nil;end || [getprefs[1]] || [(Etc.getpwnam Etc.getlogin).gecos.match(/[\sA-z0-9_-]*/).to_s])
@@ -82,7 +81,6 @@ Dependencies:
 #{dependencies.map{|a|"#{a[0]} #{a[1]}"}.join "\n"}
 Requires: #{requires.join ", "}
 Executables: #{executables.join ", "}
-Directories: #{directories.join ", "}
 Summary: #{summary}
 Description: #{description}
 Authors: #{authors.join ", "}
