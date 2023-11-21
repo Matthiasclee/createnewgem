@@ -5,7 +5,6 @@ o = {
   add_depends:{has_argument:true},
   add_requires:{has_argument:true},
   add_executables:{has_argument:true},
-  add_directories:{has_argument:true},
   summary:{has_argument:true},
   description:{has_argument:true},
   authors:{has_argument:true},
@@ -68,4 +67,16 @@ A
 # Change to user's directory
 Dir.chdir Dir.pwd
 
-
+File.write("#{gemname}.gemspec",
+           CreateNewGem::Templates::Gemspec.new(
+             gemname: gemname,
+             gemclass: classname,
+             summary: summary,
+             description: description,
+             authors: authors,
+             email: email,
+             dependencies: dependencies,
+             homepage: homepage,
+             license: license
+           )
+          )

@@ -1,0 +1,17 @@
+# Created with create_new_gem by Matthias Lee
+
+require_relative "lib/<<!gemname!>>.rb"
+
+Gem::Specification.new do |<<!gemname!>>|
+  s.name        = '<<!gemname!>>'
+  s.version     = <<!gemclass!>>.version
+  s.summary     = "<<!summary!>>"
+  s.description = "<<!description!>>"
+  s.authors     = <<!authors!>>
+  s.email       = '<<!email!>>'
+  s.files       = <<!gemclass!>>.file_paths + <<!gemclass!>>.executables.map{|i|"bin/#{i}"}
+  s.executables = <<!gemclass!>>.executables
+  s.require_paths = <<!require_paths!>>
+  <<!runtime_dependencies!>>
+  s.homepage = '<<!homepage!>>'
+end

@@ -1,5 +1,5 @@
 module CreateNewGem
-  @@files = ['helptext.rb'] # All gem files
+  @@files = ['helptext.rb', 'templates.rb'] # All gem files
   @@exe = ['gemnew'] # All executables
 
   def self.version

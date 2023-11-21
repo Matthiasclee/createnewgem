@@ -15,7 +15,6 @@ Options:
 --add_depends '<dependencies>': Adds dependencies. Use form "rbtext:>=0.3.3,argparse:>=0.0.3"
 --add_requires '<requires>': Adds require statements. Use form "rbtext,rbtext/string_methods,argparse"
 --add_executables '<executables>': Adds executables to the gem. Use form "exe1,exe2"
---add_directories '<directories>': Adds additional base directiories. Use form "files,another_one"
 --summary '<summary>': Adds summary
 --description '<description>': Adds description
 --authors '<authors>': Adds authors. Use form "Matthias Lee,John Doe"
