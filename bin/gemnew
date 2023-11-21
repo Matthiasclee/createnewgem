@@ -11,6 +11,7 @@ o = {
   authors:{has_argument:true},
   email:{has_argument:true},
   homepage:{has_argument:true},
+  license:{has_argument:true}
   no_git:{},
   help:{}
 }
@@ -19,7 +20,32 @@ s = {}
 
 args = ArgsParser::Args.new(options: o, switches: s)
 
+# Help menu
 if args.options[:help]
   puts CreateNewGem::HelpText.helptext
   exit 0
 end
+
+dependencies = {} # Set later
+requires = args.options[:add_requires].to_s.split(?,)
+executables = args.options[:add_executables].to_s.split(?,)
+directories = [] args.options[:add_directories].to_s.split(?,)
+summary = (args.options[:summary] || "Gem made with create_new_gem")
+description = (args.options[:description] || "This is a gem created with Matthias Lee's create_new_gem.")
+authors = [(Etc.getpwnam Etc.getlogin).gecos.match(/[\sA-z0-9_-]*/)]
+email = (args.options[:email] || "#{Etc.getlogin}@example.invalid")
+homepage = (args.options[:homepage] || "https://example.com")
+license = (args.options[:license] || "CC BY-NC-SA 4.0 Deed")
+no_git = args.options[:no_git]
+
+args.options[:add_depends].to_s.split(?,).each do |dep|
+  dep = dep.split(?:)
+  depend_gem = dep[0]
+  version = dep[1]
+  dependencies[depend_gem] = version
+end
+
+# Change to user's directory
+Dir.chdir Dir.pwd
+
+

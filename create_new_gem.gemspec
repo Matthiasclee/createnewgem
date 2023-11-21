@@ -11,5 +11,6 @@ Gem::Specification.new do |s|
   s.executables = CreateNewGem.executables
   s.require_paths = ["lib"]
   s.add_runtime_dependency "argparse", '>= 0.0.3'
+  s.add_runtime_dependency "etc", '>= 1.2.0'
   s.homepage = 'https://github.com/Matthiasclee/createnewgem'
 end

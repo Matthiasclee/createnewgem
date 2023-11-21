@@ -21,6 +21,7 @@ Options:
 --authors '<authors>': Adds authors. Use form "Matthias Lee,John Doe"
 --email '<email>': Adds email address
 --homepage '<homepage>': Adds homepage
+--license '<license>': Adds license
 --no_git: Doesn't initialize git
 --help: Shows the help menu
 A

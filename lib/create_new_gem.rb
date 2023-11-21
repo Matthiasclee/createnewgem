@@ -25,6 +25,7 @@ end
 
 # Additional Requires
 require "argparse"
+require "etc"
 
 CreateNewGem.file_paths(relative:true).each do |f|
   require_relative f
