@@ -5,7 +5,7 @@ def getprefs
   if File.exist?(Dir.home+"/.gemnewcfg")
     x = File.read(Dir.home+"/.gemnewcfg").split("\n")
   else
-    x = [nil, nil]
+    x = [nil, (Etc.getpwnam Etc.getlogin).gecos.match(/[\sA-z0-9_-]*/).to_s]
   end
 
   return [x[0],x[1]]
