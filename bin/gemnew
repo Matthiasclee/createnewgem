@@ -59,11 +59,11 @@ dependencies = {} # Set later
 requires = args.options[:add_requires].to_s.split(?,)
 executables = args.options[:add_executables].to_s.split(?,)
 directories = args.options[:add_directories].to_s.split(?,)
-summary = (args.options[:summary] || "Gem made with create_new_gem")
-description = (args.options[:description] || "This is a gem created with Matthias Lee's create_new_gem.")
+summary = (args.options[:summary] || (print "Gem summary: ";STDIN.gets.chomp) )
+description = (args.options[:description] || (print "Gem description: ";STDIN.gets.chomp) )
 authors = (begin;args.options[:authors].split(?,);rescue;nil;end || [getprefs[1]] || [(Etc.getpwnam Etc.getlogin).gecos.match(/[\sA-z0-9_-]*/).to_s])
 email = (args.options[:email] || getprefs[0] || "#{Etc.getlogin}@example.invalid")
-homepage = (args.options[:homepage] || "https://example.com")
+homepage = (args.options[:homepage] || (print "Gem homepage: ";STDIN.gets.chomp) )
 license = (args.options[:license] || "CC-BY-NC-SA-4.0")
 no_git = args.options[:no_git]
 
