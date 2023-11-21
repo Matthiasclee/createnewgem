@@ -11,7 +11,7 @@ o = {
   authors:{has_argument:true},
   email:{has_argument:true},
   homepage:{has_argument:true},
-  license:{has_argument:true}
+  license:{has_argument:true},
   no_git:{},
   help:{}
 }
@@ -26,16 +26,18 @@ if args.options[:help]
   exit 0
 end
 
+gemname = (args.data[0] || (STDERR.puts "Gem name required";exit 1))
+classname = (args.data[1] || (STDERR.puts "Gem class name required";exit 1))
 dependencies = {} # Set later
 requires = args.options[:add_requires].to_s.split(?,)
 executables = args.options[:add_executables].to_s.split(?,)
-directories = [] args.options[:add_directories].to_s.split(?,)
+directories = args.options[:add_directories].to_s.split(?,)
 summary = (args.options[:summary] || "Gem made with create_new_gem")
 description = (args.options[:description] || "This is a gem created with Matthias Lee's create_new_gem.")
-authors = [(Etc.getpwnam Etc.getlogin).gecos.match(/[\sA-z0-9_-]*/)]
+authors = (begin;args.options[:authors].split(?,);rescue;nil;end || [(Etc.getpwnam Etc.getlogin).gecos.match(/[\sA-z0-9_-]*/)])
 email = (args.options[:email] || "#{Etc.getlogin}@example.invalid")
 homepage = (args.options[:homepage] || "https://example.com")
-license = (args.options[:license] || "CC BY-NC-SA 4.0 Deed")
+license = (args.options[:license] || "CC BY-NC-SA 4.0")
 no_git = args.options[:no_git]
 
 args.options[:add_depends].to_s.split(?,).each do |dep|
@@ -44,6 +46,24 @@ args.options[:add_depends].to_s.split(?,).each do |dep|
   version = dep[1]
   dependencies[depend_gem] = version
 end
+
+puts <<A
+Gem Settings:
+Name: #{gemname}
+Class name: #{classname}
+Dependencies:
+#{dependencies.map{|a|"#{a[0]} #{a[1]}"}.join "\n"}
+Requires: #{requires.join ", "}
+Executables: #{executables.join ", "}
+Directories: #{directories.join ", "}
+Summary: #{summary}
+Description: #{description}
+Authors: #{authors.join ", "}
+Email: #{email}
+Homepage: #{homepage}
+License: #{license}
+Inititalize Git: #{no_git ? "no" : "yes"}
+A
 
 # Change to user's directory
 Dir.chdir Dir.pwd
