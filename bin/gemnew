@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+require_relative "../lib/create_new_gem.rb"
+
+o = {
+  add_depends:{has_argument:true},
+  add_requires:{has_argument:true},
+  add_executables:{has_argument:true},
+  add_directories:{has_argument:true},
+  summary:{has_argument:true},
+  description:{has_argument:true},
+  authors:{has_argument:true},
+  email:{has_argument:true},
+  homepage:{has_argument:true},
+  no_git:{},
+  help:{}
+}
+
+s = {}
+
+args = ArgsParser::Args.new(options: o, switches: s)
+
+if args.options[:help]
+  puts CreateNewGem::HelpText.helptext
+  exit 0
+end
