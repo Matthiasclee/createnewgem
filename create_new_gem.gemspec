@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description = "Create a blank gem"
   s.authors     = ["Matthias Lee"]
   s.email       = 'matthias@matthiasclee.com'
-  s.files       = CreateNewGem.file_paths + CreateNewGem.executables.map{|i|"bin/#{i}"} + ["lib/create_new_gem/templates/gemspec.rb.template"]
+  s.files       = CreateNewGem.file_paths + CreateNewGem.executables.map{|i|"bin/#{i}"} + ["lib/create_new_gem/templates/gemspec.rb.template", "lib/create_new_gem/templates/bin.template", "lib/create_new_gem/templates/mainfile.rb.template"]
   s.executables = CreateNewGem.executables
   s.require_paths = ["lib"]
   s.add_runtime_dependency "argparse", '>= 0.0.3'

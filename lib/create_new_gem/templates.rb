@@ -24,5 +24,35 @@ module CreateNewGem
         return @template
       end
     end
+
+    class Bin
+      def initialize(gemname:)
+        @template = File.read("#{File.dirname __FILE__}/templates/bin.template")
+          .gsub("<<!gemname!>>", gemname)
+      end
+
+      def to_s
+        return @template
+      end
+    end
+
+    class Mainfile
+      def initialize(gemname:,gemclass:,requires:,executables:)
+        require_statements = []
+        requires.each do |req|
+          require_statements << "require '#{req}'"
+        end
+
+        @template = File.read("#{File.dirname __FILE__}/templates/mainfile.rb.template")
+          .gsub("<<!gemclass!>>", gemclass)
+          .gsub("<<!gemname!>>", gemname)
+          .gsub("<<!requires!>>", require_statements.join("\n"))
+          .gsub("<<!executables!>>", executables)
+      end
+
+      def to_s
+        return @template
+      end
+    end
   end
 end

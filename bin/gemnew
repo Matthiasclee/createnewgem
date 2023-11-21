@@ -33,10 +33,10 @@ executables = args.options[:add_executables].to_s.split(?,)
 directories = args.options[:add_directories].to_s.split(?,)
 summary = (args.options[:summary] || "Gem made with create_new_gem")
 description = (args.options[:description] || "This is a gem created with Matthias Lee's create_new_gem.")
-authors = (begin;args.options[:authors].split(?,);rescue;nil;end || [(Etc.getpwnam Etc.getlogin).gecos.match(/[\sA-z0-9_-]*/)])
+authors = (begin;args.options[:authors].split(?,);rescue;nil;end || [(Etc.getpwnam Etc.getlogin).gecos.match(/[\sA-z0-9_-]*/).to_s])
 email = (args.options[:email] || "#{Etc.getlogin}@example.invalid")
 homepage = (args.options[:homepage] || "https://example.com")
-license = (args.options[:license] || "CC BY-NC-SA 4.0")
+license = (args.options[:license] || "CC-BY-NC-SA-4.0")
 no_git = args.options[:no_git]
 
 args.options[:add_depends].to_s.split(?,).each do |dep|
@@ -67,7 +67,15 @@ A
 # Change to user's directory
 Dir.chdir Dir.pwd
 
-File.write("#{gemname}.gemspec",
+# Make dirs for gem
+Dir.mkdir gemname
+Dir.chdir gemname
+Dir.mkdir "bin"
+Dir.mkdir "lib"
+Dir.mkdir "lib/#{gemname}"
+
+# Write files
+File.write("#{gemname}.gemspec", # Gemspec
            CreateNewGem::Templates::Gemspec.new(
              gemname: gemname,
              gemclass: classname,
@@ -80,3 +88,25 @@ File.write("#{gemname}.gemspec",
              license: license
            )
           )
+
+executables.each do |exe| # Executables
+  File.write("bin/#{exe}", 
+             CreateNewGem::Templates::Bin.new(
+              gemname: gemname
+             )
+            )
+end
+
+File.write("lib/#{gemname}.rb", # Main file
+           CreateNewGem::Templates::Mainfile.new(
+            gemname: gemname,
+            gemclass: classname,
+            requires: requires,
+            executables: executables.to_s
+           )
+          )
+
+unless no_git
+  `git init`
+  File.write(".gitignore", "*.gem")
+end
