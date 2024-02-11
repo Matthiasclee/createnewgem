@@ -13,5 +13,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "argparse", '>= 0.0.4'
   s.add_runtime_dependency "etc", '>= 1.2.0'
   s.homepage = 'https://github.com/Matthiasclee/createnewgem'
-  s.license = 'CC BY-NC-SA 4.0'
+  s.license = 'CC-BY-NC-SA-4.0'
 end
