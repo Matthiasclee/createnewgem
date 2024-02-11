@@ -63,7 +63,7 @@ description = (args.options[:description] || (print "Gem description: ";STDIN.ge
 authors = (begin;args.options[:authors].split(?,);rescue;nil;end || [getprefs[1]] || [(Etc.getpwnam Etc.getlogin).gecos.match(/[\sA-z0-9_-]*/).to_s])
 email = (args.options[:email] || getprefs[0] || "#{Etc.getlogin}@example.invalid")
 homepage = (args.options[:homepage] || (print "Gem homepage: ";STDIN.gets.chomp) )
-license = (args.options[:license] || "CC-BY-NC-SA-4.0")
+license = (args.options[:license] || "CC BY-NC-SA 4.0")
 no_git = args.options[:no_git]
 
 args.options[:add_depends].to_s.split(?,).each do |dep|
