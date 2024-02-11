@@ -3,7 +3,7 @@ module CreateNewGem
   @@exe = ['gemnew'] # All executables
 
   def self.version
-    "0.0.1"
+    "0.0.2"
   end
 
   def self.executables
